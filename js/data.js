@@ -165,9 +165,9 @@ window.VN_DATA = {
       bg: 'lib',
       character: 'normal',
       dialogue: [
-        { speaker: '???', text: 'Sorry about that. I never open the lights because no one really goes here.', voice: 'neutral' },
-        { speaker: '???', text: 'And electricity bills gets to a point where it’s not affordable…', voice: 'sad' },
-        { speaker: '???', text: 'Welcome! To my humble library. I am Alyssa, the owner and only employee…', voice: 'happy' },
+        { speaker: '???', text: 'Sorry about that. I never open the lights because no one really comes here.', voice: 'neutral' },
+        { speaker: '???', text: 'And electricity bills get to a point where it’s not affordable…', voice: 'sad' },
+        { speaker: '???', text: 'Welcome To my humble library. I am Alyssa, the owner and only employee…', voice: 'happy' },
         {
           speaker: 'ALYSSA',
           text: 'Who are you?',
@@ -187,7 +187,7 @@ window.VN_DATA = {
           text: 'Are you perhaps a Chinese spy?',
           voice: 'angry',
           sprite: 'mad',
-          quickEvent: { type: 'yes-no', durationMs: 1150 }
+          quickEvent: { type: 'yes-no', durationMs: 500 }
         },
         { speaker: 'ALYSSA', text: 'Bah, you don’t look the part.', voice: 'angry', sprite: 'mad' },
         { speaker: 'ALYSSA', text: 'Maybe you’re just… a boring, normal person.', voice: 'angry', sprite: 'mad' },
@@ -204,7 +204,7 @@ window.VN_DATA = {
         { speaker: 'ALYSSA', text: 'Books can be about anything. Collections of short stories. Anecdotes. Fiction. Nonfiction. So many options.', voice: 'neutral' },
         {
           speaker: 'ALYSSA',
-          text: 'There’s also different genres. Laugh? Then Comedy is for ‘ya.',
+          text: 'There’s also different genres. Like laughing? Then Comedy is for ‘ya.',
           voice: 'happy'
         },
         {

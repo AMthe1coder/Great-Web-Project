@@ -292,6 +292,7 @@
   function showCreditsScreen() {
     clearTimers();
     audio.stopVoice();
+    audio.playSfx('shine', 0.55);
     setBackground('libLit');
     hydrateLazyImages(screens.credits);
     setActiveScreen('credits');

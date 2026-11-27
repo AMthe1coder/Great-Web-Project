@@ -1008,6 +1008,13 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .bg-layer,
+  .bg-blur-layer {
+    background-position: 82% center;
+  }
+}
+
 @media (max-width: 600px) {
   .top-controls {
     top: 14px;

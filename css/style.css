@@ -158,6 +158,50 @@ body {
 }
 
 /* ==========================================================================
+   Initial Loading Indicator
+   ========================================================================== */
+.initial-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(18, 16, 14, 0.72);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.25s ease;
+}
+
+.loader-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 26px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-interface);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.loader-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(43, 107, 110, 0.25);
+  border-top-color: var(--color-teal);
+  border-radius: 50%;
+  animation: loaderSpin 0.75s linear infinite;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
    Top Controls (Leave & Audio)
    ========================================================================== */
 .top-controls {

@@ -5,13 +5,13 @@
 window.VN_DATA = {
   assets: {
     bg: {
-      dark: 'assets/bg/bg-dark.png',
-      lib: 'assets/bg/bg-lib.png',
-      libLit: 'assets/bg/bg-lib-lit.png'
+      dark: 'assets/bg/bg-dark.webp',
+      lib: 'assets/bg/bg-lib.webp',
+      libLit: 'assets/bg/bg-lib-lit.webp'
     },
     character: {
-      normal: 'assets/character/alyssa-normal (1).png',
-      mad: 'assets/character/alyssa-mad.png'
+      normal: 'assets/character/alyssa-normal (1).webp',
+      mad: 'assets/character/alyssa-mad.webp'
     },
     bgm: {
       main: 'assets/bg-music/leberch-no-copyright-music-594951.mp3'
@@ -39,7 +39,7 @@ window.VN_DATA = {
       genre: 'Fantasy, Mythology, Adventure',
       dateLabel: 'Published:',
       dateValue: '2013',
-      symbol: 'assets/objects/house-of-hades.png',
+      symbol: 'assets/objects/house-of-hades.webp',
       ebookUrl: 'assets/books/house-of-hades.pdf',
       summary:
         'Percy Jackson and Annabeth Chase are trapped in Tartarus and must fight their way toward the Doors of Death from the underworld side. Meanwhile, their friends aboard the Argo II race across the mortal world to reach the House of Hades and close the doors before Gaea’s forces can overwhelm them.'
@@ -51,7 +51,7 @@ window.VN_DATA = {
       genre: 'Young Adult, Contemporary Fiction',
       dateLabel: 'Published:',
       dateValue: '2018',
-      symbol: 'assets/objects/dear-evan-hansen.png',
+      symbol: 'assets/objects/dear-evan-hansen.webp',
       ebookUrl: 'assets/books/dear-evan-hansen.pdf',
       summary:
         'Evan Hansen is a socially anxious high school student who struggles to connect with the people around him. After a misunderstanding involving a letter and a classmate named Connor Murphy, Evan finds himself caught in a complicated situation that changes how others see him. As the lie grows, he must confront the consequences of his actions and the truth about himself.'
@@ -63,7 +63,7 @@ window.VN_DATA = {
       genre: 'Historical Fiction, Epistolary Fiction',
       dateLabel: 'Published:',
       dateValue: '1982',
-      symbol: 'assets/objects/color-purple.png',
+      symbol: 'assets/objects/color-purple.webp',
       ebookUrl: 'assets/books/the-color-purple.pdf',
       summary:
         'Told through heartfelt letters, Celie chronicles her life in the American South as she endures hardship, separation from her beloved sister Nettie, and oppression. Through resilience and the inspiring bonds she forms with remarkable women like Shug Avery and Sofia, Celie discovers her voice, self-worth, and independence.'
@@ -75,7 +75,7 @@ window.VN_DATA = {
       genre: 'Greek Mythology, Tragedy',
       dateLabel: 'Origin:',
       dateValue: 'Ancient Greek mythology',
-      symbol: 'assets/objects/orpheus-and-eurydice.png',
+      symbol: 'assets/objects/orpheus-and-eurydice.webp',
       ebookUrl: 'assets/books/orpheus-and-eurydice.pdf',
       summary:
         'After his bride Eurydice dies from a viper bite, the gifted musician Orpheus descends into the Underworld to win her back with his lyre. Moved by his song, Hades grants his wish on one condition: Orpheus must never look back at Eurydice until they both reach the surface—a test of trust with a heartbreaking ending.'
@@ -87,7 +87,7 @@ window.VN_DATA = {
       genre: 'Romance, Classic Literature, Psychological Fiction',
       dateLabel: 'Published:',
       dateValue: '1848',
-      symbol: 'assets/objects/white-night.png',
+      symbol: 'assets/objects/white-night.webp',
       ebookUrl: 'assets/books/white-nights.pdf',
       summary:
         'Over four luminous summer nights in Saint Petersburg, a lonely dreamer meets Nastenka, a young woman waiting for the return of the man she loves. As they share their hopes and sorrows, the dreamer falls deeply in love, knowing their fleeting connection may vanish the moment her past returns.'
@@ -99,7 +99,7 @@ window.VN_DATA = {
       genre: 'Gothic Fiction, Philosophical Fiction',
       dateLabel: 'Published:',
       dateValue: '1890',
-      symbol: 'assets/objects/the-portrait-of-dorian-gray.png',
+      symbol: 'assets/objects/the-portrait-of-dorian-gray.webp',
       ebookUrl: 'assets/books/dorian-grey.pdf',
       summary:
         'Enthralled by his own youthful beauty, Dorian Gray wishes that a painted portrait of him would age and bear the scars of his sins instead of himself. As Dorian pursues a life of vanity and indulgence, he stays untouched by time while the hidden portrait grows ever more grotesque.'
@@ -111,7 +111,7 @@ window.VN_DATA = {
       genre: 'Science Fiction, Comedy, Adventure',
       dateLabel: 'Published:',
       dateValue: '1979',
-      symbol: 'assets/objects/guide-to-galaxy.png',
+      symbol: 'assets/objects/guide-to-galaxy.webp',
       ebookUrl: 'assets/books/guide-to-the-galaxy.pdf',
       summary:
         'Seconds before Earth is demolished to make way for an intergalactic bypass, ordinary Englishman Arthur Dent is rescued by his alien friend Ford Prefect. Armed with a towel and an electronic guidebook, Arthur embarks on an absurd cosmic journey full of eccentric characters and the ultimate question of life.'
@@ -123,7 +123,7 @@ window.VN_DATA = {
       genre: 'Historical Fantasy, Romance, Young Adult',
       dateLabel: 'Published:',
       dateValue: '2020',
-      symbol: 'assets/objects/these-violent-nights.png',
+      symbol: 'assets/objects/these-violent-nights.webp',
       ebookUrl: 'assets/books/these-violent-delights.pdf',
       summary:
         'Set in 1926 Shanghai, rival gang heirs Juliette Cai and Roma Montagov—once each other’s first love—are forced to set aside their blood feud when a mysterious madness begins claiming victims across the city. Together, they must uncover a lurking monster before it destroys everything they care about.'

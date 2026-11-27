@@ -9,6 +9,7 @@
   // DOM Elements
   const bgLayer = document.getElementById('bg-layer');
   const bgBlurLayer = document.getElementById('bg-blur-layer');
+  const initialLoader = document.getElementById('initial-loader');
   const transitionOverlay = document.getElementById('transition-overlay');
 
   const screens = {
@@ -66,15 +67,92 @@
     currentSpriteKey: null
   };
 
+  // Deduplicated image cache so each asset is downloaded at most once
+  const imageCache = new Map();
+
+  function preloadImage(src) {
+    if (!src) return Promise.resolve();
+    if (imageCache.has(src)) return imageCache.get(src);
+
+    const promise = new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        if (img.decode) {
+          img.decode().then(resolve).catch(resolve);
+        } else {
+          resolve();
+        }
+      };
+      img.onerror = resolve;
+      img.src = src;
+    });
+
+    imageCache.set(src, promise);
+    return promise;
+  }
+
+  function preloadImagesList(urls) {
+    return Promise.all(urls.map(preloadImage));
+  }
+
+  function hydrateLazyImages(container) {
+    if (!container) return;
+    const lazyImgs = container.querySelectorAll('img[data-src]');
+    lazyImgs.forEach((img) => {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    });
+  }
+
+  function preloadUpcomingScene(sceneKey) {
+    if (sceneKey === 'title') {
+      preloadImage(assets.bg.dark);
+    } else if (sceneKey === 'scene2') {
+      preloadImagesList([
+        assets.bg.lib,
+        assets.character.normal,
+        assets.character.mad
+      ]);
+    } else if (sceneKey === 'scene3') {
+      preloadImagesList(books.map((b) => b.symbol));
+    } else if (sceneKey === 'library') {
+      preloadImagesList([
+        assets.bg.libLit,
+        assets.character.normal,
+        'assets/objects/guide-to-galaxy.webp',
+        'assets/objects/dear-evan-hansen.webp'
+      ]);
+    }
+  }
+
   /* ========================================================================
-     Initialization
+     Initialization (Load Initial Screen Assets First)
      ======================================================================== */
   function init() {
-    preloadImages();
     renderLibraryGrid();
     bindEvents();
     showTitleScreen();
-    audio.startBgm();
+
+    // Only show loading indicator if initial assets take longer than 150ms
+    const loaderTimer = setTimeout(() => {
+      initialLoader.classList.remove('hidden');
+    }, 150);
+
+    const initialAssets = [
+      assets.bg.libLit,
+      'assets/objects/these-violent-nights.webp',
+      'assets/objects/white-night.webp',
+      'assets/objects/orpheus-and-eurydice.webp'
+    ];
+
+    preloadImagesList(initialAssets).then(() => {
+      clearTimeout(loaderTimer);
+      initialLoader.classList.add('hidden');
+
+      // Start BGM and quietly preload Scene 2 after initial screen is ready
+      audio.startBgm();
+      preloadUpcomingScene('title');
+    });
 
     // Fallback in case the browser blocks autoplay until the first user interaction
     const unlockAudio = () => {
@@ -88,17 +166,6 @@
     };
     document.addEventListener('pointerdown', unlockAudio);
     document.addEventListener('keydown', unlockAudio);
-  }
-
-  function preloadImages() {
-    const urls = [
-      ...Object.values(assets.bg),
-      ...Object.values(assets.character)
-    ];
-    urls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
   }
 
   function bindEvents() {
@@ -202,13 +269,7 @@
         });
       };
 
-      const bgImg = new Image();
-      bgImg.src = assets.bg.lib;
-      if (bgImg.decode) {
-        bgImg.decode().then(reveal).catch(reveal);
-      } else {
-        setTimeout(reveal, 120);
-      }
+      preloadImage(assets.bg.lib).then(reveal);
     }, 520);
   }
 
@@ -223,13 +284,16 @@
     clearTimers();
     audio.stopVoice();
     setBackground('lib');
+    hydrateLazyImages(screens.library);
     setActiveScreen('library');
+    preloadUpcomingScene('library');
   }
 
   function showCreditsScreen() {
     clearTimers();
     audio.stopVoice();
     setBackground('libLit');
+    hydrateLazyImages(screens.credits);
     setActiveScreen('credits');
   }
 
@@ -250,6 +314,7 @@
     setCharacterSprite(scene.character);
     clearSpecialUI();
     setActiveScreen('dialogue');
+    preloadUpcomingScene(sceneKey);
 
     renderCurrentLine();
   }
@@ -485,8 +550,10 @@
       btn.setAttribute('title', book.title);
 
       const img = document.createElement('img');
-      img.src = book.symbol;
+      img.dataset.src = book.symbol;
       img.alt = book.title;
+      img.loading = 'lazy';
+      img.decoding = 'async';
 
       btn.appendChild(img);
       btn.addEventListener('click', () => openBookModal(book));

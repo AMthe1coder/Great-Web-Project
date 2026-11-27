@@ -45,12 +45,20 @@
       </button>
     </div>
 
+    <!-- Initial Loading Indicator (shown only if initial assets take >150ms) -->
+    <div id="initial-loader" class="initial-loader hidden" role="status" aria-live="polite">
+      <div class="loader-pill">
+        <span class="loader-spinner" aria-hidden="true"></span>
+        <span>Opening library...</span>
+      </div>
+    </div>
+
     <!-- SCENE 1: TITLE SCREEN -->
     <section id="scene-title" class="screen screen-title active" aria-label="Title Screen">
       <div class="floating-stickers" aria-hidden="true">
-        <img src="assets/objects/these-violent-nights.png" alt="" class="sticker sticker-top-left">
-        <img src="assets/objects/white-night.png" alt="" class="sticker sticker-bottom-left">
-        <img src="assets/objects/orpheus-and-eurydice.png" alt="" class="sticker sticker-bottom-right">
+        <img src="assets/objects/these-violent-nights.webp" alt="" class="sticker sticker-top-left" decoding="async">
+        <img src="assets/objects/white-night.webp" alt="" class="sticker sticker-bottom-left" decoding="async">
+        <img src="assets/objects/orpheus-and-eurydice.webp" alt="" class="sticker sticker-bottom-right" decoding="async">
       </div>
 
       <div class="title-content">
@@ -94,7 +102,7 @@
     <!-- SCENE 4: LIBRARY / BOOK RECOMMENDATION -->
     <section id="scene-library" class="screen screen-library" aria-label="Book Recommendations">
       <div class="library-character-backdrop" aria-hidden="true">
-        <img src="assets/character/alyssa-normal (1).png" alt="" class="library-alyssa-img">
+        <img data-src="assets/character/alyssa-normal (1).webp" alt="" class="library-alyssa-img lazy-img" loading="lazy" decoding="async">
       </div>
 
       <div id="book-symbols-grid" class="book-symbols-grid" role="list" aria-label="Recommended Books">
@@ -155,11 +163,11 @@
     <!-- SCENE 6: CREDITS SCREEN -->
     <section id="scene-credits" class="screen screen-credits" aria-label="Credits">
       <div class="floating-stickers" aria-hidden="true">
-        <img src="assets/objects/these-violent-nights.png" alt="" class="sticker sticker-top-left">
-        <img src="assets/objects/guide-to-galaxy.png" alt="" class="sticker sticker-mid-left">
-        <img src="assets/objects/white-night.png" alt="" class="sticker sticker-bottom-left">
-        <img src="assets/objects/dear-evan-hansen.png" alt="" class="sticker sticker-mid-right">
-        <img src="assets/objects/orpheus-and-eurydice.png" alt="" class="sticker sticker-bottom-right">
+        <img data-src="assets/objects/these-violent-nights.webp" alt="" class="sticker sticker-top-left lazy-img" loading="lazy" decoding="async">
+        <img data-src="assets/objects/guide-to-galaxy.webp" alt="" class="sticker sticker-mid-left lazy-img" loading="lazy" decoding="async">
+        <img data-src="assets/objects/white-night.webp" alt="" class="sticker sticker-bottom-left lazy-img" loading="lazy" decoding="async">
+        <img data-src="assets/objects/dear-evan-hansen.webp" alt="" class="sticker sticker-mid-right lazy-img" loading="lazy" decoding="async">
+        <img data-src="assets/objects/orpheus-and-eurydice.webp" alt="" class="sticker sticker-bottom-right lazy-img" loading="lazy" decoding="async">
       </div>
 
       <div class="credits-content">

@@ -36,6 +36,7 @@
   const quickTimerTrack = document.getElementById('quick-timer-track');
   const quickTimerFill = document.getElementById('quick-timer-fill');
   const dialogueBox = document.getElementById('dialogue-box');
+  const btnDialogueBack = document.getElementById('btn-dialogue-back');
   const speakerLabel = document.getElementById('speaker-label');
   const dialogueText = document.getElementById('dialogue-text');
   const nextIndicator = document.getElementById('dialogue-next-indicator');
@@ -209,6 +210,11 @@
       }
     });
 
+    btnDialogueBack.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goBackDialogue();
+    });
+
     btnCloseModal.addEventListener('click', closeBookModal);
     modalOverlay.addEventListener('click', (e) => {
       if (e.target === modalOverlay) {
@@ -331,6 +337,7 @@
       setCharacterSprite(entry.sprite);
     }
 
+    btnDialogueBack.classList.toggle('hidden', state.dialogueIndex === 0);
     speakerLabel.textContent = entry.speaker;
 
     if (entry.voice) {
@@ -400,6 +407,28 @@
 
     audio.playSfx('click', 0.4);
     advanceToNextLine();
+  }
+
+  function goBackDialogue() {
+    if (state.isTransitioning || state.dialogueIndex <= 0) return;
+
+    clearTimers();
+    clearSpecialUI();
+    state.awaitingChoice = false;
+    audio.playSfx('click', 0.4);
+    state.dialogueIndex -= 1;
+
+    // Ensure character sprite matches the target line when stepping backward
+    const scene = scenes[state.currentSceneKey];
+    let resolvedSprite = scene.character;
+    for (let i = 0; i <= state.dialogueIndex; i += 1) {
+      if (scene.dialogue[i].sprite !== undefined) {
+        resolvedSprite = scene.dialogue[i].sprite;
+      }
+    }
+    setCharacterSprite(resolvedSprite);
+
+    renderCurrentLine();
   }
 
   function advanceToNextLine() {

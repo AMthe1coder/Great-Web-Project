@@ -581,6 +581,37 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
 }
 
+.dialogue-back-btn {
+  position: absolute;
+  top: -18px;
+  right: 28px;
+  padding: 6px 16px;
+  border: none;
+  border-radius: var(--radius-label);
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  font-family: var(--font-interface);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.dialogue-back-btn:hover {
+  background-color: var(--color-teal-dark);
+  transform: translateY(-2px);
+}
+
+.dialogue-back-btn:active {
+  transform: translateY(0);
+}
+
+.dialogue-back-btn:focus-visible {
+  outline: 3px solid var(--color-cream);
+  outline-offset: 2px;
+}
+
 .dialogue-text {
   font-family: var(--font-dialogue);
   font-weight: 500;

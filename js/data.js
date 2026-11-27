@@ -187,7 +187,7 @@ window.VN_DATA = {
           text: 'Are you perhaps a Chinese spy?',
           voice: 'angry',
           sprite: 'mad',
-          quickEvent: { type: 'yes-no', durationMs: 2000 }
+          quickEvent: { type: 'yes-no', durationMs: 200 }
         },
         { speaker: 'ALYSSA', text: 'Bah, you don’t look the part.', voice: 'angry', sprite: 'mad' },
         { speaker: 'ALYSSA', text: 'Maybe you’re just… a boring, normal person.', voice: 'angry', sprite: 'mad' },

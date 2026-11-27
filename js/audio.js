@@ -1,5 +1,5 @@
 /**
- * Centralized Audio Manager for BGM, SFX, and Voice clips.
+ * Centralized Audio Manager for BGM and SFX.
  * Lazily loads audio only when needed and caches Audio instances to prevent duplicate downloads.
  */
 class AudioManager {
@@ -15,8 +15,6 @@ class AudioManager {
     this.bgm.volume = 0.35;
 
     this.sfxCache = new Map();
-    this.voiceCache = new Map();
-    this.currentVoice = null;
     this.fadeInterval = null;
   }
 
@@ -67,10 +65,6 @@ class AudioManager {
     this.isMuted = !this.isMuted;
     this.bgm.muted = this.isMuted;
 
-    if (this.currentVoice) {
-      this.currentVoice.muted = this.isMuted;
-    }
-
     if (!this.isMuted && this.bgmStarted && this.bgm.paused) {
       this.bgm.play().catch(() => {});
     }
@@ -94,37 +88,6 @@ class AudioManager {
       sfx.play().catch(() => {});
     } catch (_) {
       // Ignore audio playback errors
-    }
-  }
-
-  playVoice(key) {
-    this.stopVoice();
-    if (this.isMuted || !key) return;
-
-    const src = this.assets.voice[key];
-    if (!src) return;
-
-    try {
-      let voice = this.voiceCache.get(key);
-      if (!voice) {
-        voice = new Audio(src);
-        this.voiceCache.set(key, voice);
-      }
-      voice.volume = 0.7;
-      voice.muted = this.isMuted;
-      voice.currentTime = 0;
-      this.currentVoice = voice;
-      voice.play().catch(() => {});
-    } catch (_) {
-      // Ignore missing or blocked voice clips
-    }
-  }
-
-  stopVoice() {
-    if (this.currentVoice) {
-      this.currentVoice.pause();
-      this.currentVoice.currentTime = 0;
-      this.currentVoice = null;
     }
   }
 }

@@ -22,13 +22,6 @@ window.VN_DATA = {
       pageFlip: 'assets/sfx/sumaga123-page-flip-557810.mp3',
       shine: 'assets/sfx/benkirb-shine-2-268904.mp3'
     },
-    voice: {
-      neutral: 'assets/voice/alyssa-neutral.wav',
-      angry: 'assets/voice/alysa-angry.wav',
-      happy: 'assets/voice/alyssa-happy.wav',
-      sad: 'assets/voice/alyssa-sad.wav',
-      surprised: 'assets/voice/alyssa-surprised.wav'
-    }
   },
 
   books: [
@@ -135,17 +128,16 @@ window.VN_DATA = {
       bg: 'dark',
       character: null,
       dialogue: [
-        { speaker: '???', text: '…', voice: 'neutral' },
-        { speaker: '???', text: 'A visitor?', voice: 'surprised' },
-        { speaker: '???', text: 'How interesting…', voice: 'neutral' },
-        { speaker: '???', text: 'It has been far too long since I’ve seen people in these parts', voice: 'neutral' },
-        { speaker: '???', text: 'Are you lost? Took a wrong turn? Heh. Figures.', voice: 'neutral' },
-        { speaker: '???', text: 'No one ever visits here willingly…', voice: 'sad' },
-        { speaker: '???', text: 'Anyways, I can get you back to your world. But it’ll take a while to activate the portal.', voice: 'neutral' },
+        { speaker: '???', text: '…' },
+        { speaker: '???', text: 'A visitor?' },
+        { speaker: '???', text: 'How interesting…' },
+        { speaker: '???', text: 'It has been far too long since I’ve seen a visitor.' },
+        { speaker: '???', text: 'Are you lost? Took a wrong turn? Heh. Figures.' },
+        { speaker: '???', text: 'No one ever visits here willingly…' },
+        { speaker: '???', text: 'Anyways, I can get you back to your world. But it’ll take a while to activate the portal.' },
         {
           speaker: '???',
           text: 'Would you like to listen to me talk in the meanwhile?',
-          voice: 'neutral',
           choices: [
             { label: 'Sure', action: 'next' },
             { label: 'Nah', action: 'credits' }
@@ -154,7 +146,6 @@ window.VN_DATA = {
         {
           speaker: '???',
           text: 'Great. Let me just….',
-          voice: 'happy',
           transitionOut: 'white-fade',
           nextScene: 'scene3'
         }
@@ -165,57 +156,51 @@ window.VN_DATA = {
       bg: 'lib',
       character: 'normal',
       dialogue: [
-        { speaker: '???', text: 'Sorry about that. I never open the lights because no one really comes here.', voice: 'neutral' },
-        { speaker: '???', text: 'And electricity bills get to a point where it’s not affordable…', voice: 'sad' },
-        { speaker: '???', text: 'Welcome To my humble library. I am Alyssa, the owner and only employee…', voice: 'happy' },
+        { speaker: '???', text: 'Sorry about that. I never open the lights because no one really comes here often.' },
+        { speaker: '???', text: 'And electricity bills get to a point where it costs more than I can afford…' },
+        { speaker: '???', text: 'Welcome To my humble library. I am Alyssa, the owner and only employee…' },
         {
           speaker: 'ALYSSA',
           text: 'Who are you?',
-          voice: 'neutral',
           sprite: 'normal',
           quickEvent: { type: 'text-input', durationMs: 1100 }
         },
         {
           speaker: 'ALYSSA',
-          text: 'Scratch that. How did you get here?!',
-          voice: 'angry',
+          text: 'How did you get here?!',
           sprite: 'mad',
           quickEvent: { type: 'text-input', durationMs: 1100 }
         },
         {
           speaker: 'ALYSSA',
           text: 'Are you perhaps a Chinese spy?',
-          voice: 'angry',
           sprite: 'mad',
           quickEvent: { type: 'yes-no', durationMs: 500 }
         },
-        { speaker: 'ALYSSA', text: 'Bah, you don’t look the part.', voice: 'angry', sprite: 'mad' },
-        { speaker: 'ALYSSA', text: 'Maybe you’re just… a boring, normal person.', voice: 'angry', sprite: 'mad' },
-        { speaker: 'ALYSSA', text: 'Anyways…', voice: 'neutral', sprite: 'mad' },
+        { speaker: 'ALYSSA', text: 'You dont look Chinese.', sprite: 'mad' },
+        { speaker: 'ALYSSA', text: 'In fact, you look... ambiguous.', sprite: 'mad' },
+        { speaker: 'ALYSSA', text: 'Maybe you’re just… a boring, normal person.', sprite: 'mad' },
+        { speaker: 'ALYSSA', text: 'Anyways…', sprite: 'mad' },
         {
           speaker: 'ALYSSA',
           text: 'Right!',
-          voice: 'happy',
           sprite: 'normal'
         },
-        { speaker: 'ALYSSA', text: 'Books. You’ve heard of them… right?', voice: 'neutral' },
-        { speaker: 'ALYSSA', text: 'I enjoy quite a lot of them… Well that’s why I have a library..', voice: 'happy' },
-        { speaker: 'ALYSSA', text: 'I like collecting them, like, especially my favorite ones.', voice: 'happy' },
-        { speaker: 'ALYSSA', text: 'Books can be about anything. Collections of short stories. Anecdotes. Fiction. Nonfiction. So many options.', voice: 'neutral' },
+        { speaker: 'ALYSSA', text: 'Books. You’ve heard of them… right?' },
+        { speaker: 'ALYSSA', text: 'I enjoy quite a lot of them… Well that’s why I have a library..' },
+        { speaker: 'ALYSSA', text: 'I like collecting them, like, especially my favorite ones.' },
+        { speaker: 'ALYSSA', text: 'Books can be about anything. Collections of short stories. Anecdotes. Fiction. Nonfiction. So many options.' },
         {
           speaker: 'ALYSSA',
-          text: 'There’s also different genres. Like laughing? Then Comedy is for ‘ya.',
-          voice: 'happy'
+          text: 'There’s also different genres. Like laughing? Then Comedy is for ‘ya.'
         },
         {
           speaker: 'ALYSSA',
-          text: 'A hopeless romantic? A horror fanatic? There’s a book guaranteed to your tastes. There are a lot of amazing authors.',
-          voice: 'happy'
+          text: 'A hopeless romantic? A horror fanatic? There’s a book guaranteed to your tastes. There are a lot of amazing authors.'
         },
         {
           speaker: 'ALYSSA',
           text: 'Here are some of my favorite ones!',
-          voice: 'happy',
           nextScene: 'library'
         }
       ]
@@ -225,12 +210,11 @@ window.VN_DATA = {
       bg: 'libLit',
       character: 'normal',
       dialogue: [
-        { speaker: 'ALYSSA', text: 'Ah! Your time is up.', voice: 'surprised' },
-        { speaker: 'ALYSSA', text: 'Well, don’t be a stranger. You can come back if you want.', voice: 'happy' },
+        { speaker: 'ALYSSA', text: 'Ah! Your time is up.' },
+        { speaker: 'ALYSSA', text: 'Well, don’t be a stranger. You can come back if you want.' },
         {
           speaker: 'ALYSSA',
           text: 'Thank you for visiting me!!',
-          voice: 'happy',
           nextScene: 'credits'
         }
       ]

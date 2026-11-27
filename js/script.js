@@ -281,14 +281,12 @@
 
   function showTitleScreen() {
     clearTimers();
-    audio.stopVoice();
     setBackground('libLit');
     setActiveScreen('title');
   }
 
   function showLibraryScreen() {
     clearTimers();
-    audio.stopVoice();
     setBackground('lib');
     hydrateLazyImages(screens.library);
     setActiveScreen('library');
@@ -297,7 +295,6 @@
 
   function showCreditsScreen() {
     clearTimers();
-    audio.stopVoice();
     audio.playSfx('shine', 0.55);
     setBackground('libLit');
     hydrateLazyImages(screens.credits);
@@ -339,10 +336,6 @@
 
     btnDialogueBack.classList.toggle('hidden', state.dialogueIndex === 0);
     speakerLabel.textContent = entry.speaker;
-
-    if (entry.voice) {
-      audio.playVoice(entry.voice);
-    }
 
     startTypewriter(entry.text, () => {
       if (entry.choices) {

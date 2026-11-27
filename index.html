@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Great Web Project</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="vn-stage" class="vn-stage" aria-label="The Great Web Project Interactive Visual Novel">
+    <!-- Background Layer -->
+    <div id="bg-layer" class="bg-layer" aria-hidden="true"></div>
+    <div id="bg-blur-layer" class="bg-blur-layer" aria-hidden="true"></div>
+
+    <!-- Global Top Controls -->
+    <div class="top-controls">
+      <button
+        id="btn-leave-library"
+        class="icon-circle-btn hidden"
+        type="button"
+        aria-label="Leave Library"
+        title="Leave Library"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <button
+        id="btn-audio-toggle"
+        class="icon-circle-btn audio-btn"
+        type="button"
+        aria-label="Toggle Audio"
+        aria-pressed="false"
+        title="Mute / Unmute Audio"
+      >
+        <svg id="icon-audio-on" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" />
+        </svg>
+        <svg id="icon-audio-off" class="hidden" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor" />
+          <path d="M22 9l-6 6M16 9l6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- SCENE 1: TITLE SCREEN -->
+    <section id="scene-title" class="screen screen-title active" aria-label="Title Screen">
+      <div class="floating-stickers" aria-hidden="true">
+        <img src="assets/objects/these-violent-nights.png" alt="" class="sticker sticker-top-left">
+        <img src="assets/objects/white-night.png" alt="" class="sticker sticker-bottom-left">
+        <img src="assets/objects/orpheus-and-eurydice.png" alt="" class="sticker sticker-bottom-right">
+      </div>
+
+      <div class="title-content">
+        <h1 class="game-title" data-text="THE GREAT WEB PROJECT">
+          THE GREAT WEB<br>PROJECT
+        </h1>
+        <div class="title-actions">
+          <button id="btn-start" class="pill-btn" type="button">Start</button>
+          <button id="btn-library" class="pill-btn" type="button">library</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCENE 2, 3, 5: VISUAL NOVEL DIALOGUE STAGE -->
+    <section id="scene-dialogue" class="screen screen-dialogue" aria-label="Story Dialogue">
+      <!-- Character Sprite -->
+      <div id="character-container" class="character-container hidden">
+        <img id="character-sprite" class="character-sprite" src="" alt="Alyssa">
+      </div>
+
+      <!-- Interactive Choices / Quick Disappearing Prompts -->
+      <div id="choice-container" class="choice-container hidden" role="group" aria-label="Dialogue Choices"></div>
+
+      <!-- Quick Disappearing Input Prompt -->
+      <div id="quick-input-container" class="quick-input-container hidden">
+        <label for="quick-input-field" class="sr-only">Your response</label>
+        <input id="quick-input-field" class="quick-input-field" type="text" placeholder="Type your answer..." autocomplete="off">
+      </div>
+
+      <!-- Dialogue Box -->
+      <div id="dialogue-box" class="dialogue-box" role="button" tabindex="0" aria-label="Dialogue box, click or press Enter to continue">
+        <div id="speaker-label" class="speaker-label">???</div>
+        <p id="dialogue-text" class="dialogue-text"></p>
+        <div id="quick-timer-track" class="quick-timer-track hidden" aria-hidden="true">
+          <div id="quick-timer-fill" class="quick-timer-fill"></div>
+        </div>
+        <span id="dialogue-next-indicator" class="dialogue-next-indicator" aria-hidden="true">▼</span>
+      </div>
+    </section>
+
+    <!-- SCENE 4: LIBRARY / BOOK RECOMMENDATION -->
+    <section id="scene-library" class="screen screen-library" aria-label="Book Recommendations">
+      <div class="library-character-backdrop" aria-hidden="true">
+        <img src="assets/character/alyssa-normal (1).png" alt="" class="library-alyssa-img">
+      </div>
+
+      <div id="book-symbols-grid" class="book-symbols-grid" role="list" aria-label="Recommended Books">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="dialogue-box dialogue-box-static">
+        <div class="speaker-label speaker-alyssa">ALYSSA</div>
+        <p class="dialogue-text">Here are some of my favorite ones!</p>
+      </div>
+    </section>
+
+    <!-- BOOK DETAIL MODAL -->
+    <div id="book-modal-overlay" class="book-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-book-title">
+      <div class="book-modal-wrapper">
+        <img id="modal-book-symbol" class="modal-book-symbol" src="" alt="">
+
+        <article class="book-modal-card">
+          <button id="btn-close-modal" class="icon-circle-btn modal-close-btn" type="button" aria-label="Close Book Details" title="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+            </svg>
+          </button>
+
+          <header class="modal-header">
+            <h2 id="modal-book-title" class="modal-book-title"></h2>
+            <p id="modal-book-author" class="modal-book-author"></p>
+          </header>
+
+          <div class="modal-meta">
+            <p><strong>Genre:</strong> <span id="modal-book-genre"></span></p>
+            <p><strong id="modal-book-date-label">Published:</strong> <span id="modal-book-date"></span></p>
+          </div>
+
+          <div class="modal-summary-section">
+            <p class="modal-summary-heading"><strong>Summary:</strong></p>
+            <p id="modal-book-summary" class="modal-book-summary"></p>
+          </div>
+        </article>
+
+        <a
+          id="modal-book-link"
+          class="icon-circle-btn modal-ebook-btn"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Read the book in a new browser!"
+          title="Read the book in a new browser!"
+          data-tooltip="Read the book in a new browser!"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2 4.5C2 3.67 2.67 3 3.5 3H9c1.66 0 3 1.34 3 3v14.5c0-.83-.67-1.5-1.5-1.5H3.5C2.67 19 2 18.33 2 17.5v-13zm20 0C22 3.67 21.33 3 20.5 3H15c-1.66 0-3 1.34-3 3v14.5c0-.83.67-1.5 1.5-1.5h7c.83 0 1.5-.67 1.5-1.5v-13z" fill="currentColor" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- SCENE 6: CREDITS SCREEN -->
+    <section id="scene-credits" class="screen screen-credits" aria-label="Credits">
+      <div class="floating-stickers" aria-hidden="true">
+        <img src="assets/objects/these-violent-nights.png" alt="" class="sticker sticker-top-left">
+        <img src="assets/objects/guide-to-galaxy.png" alt="" class="sticker sticker-mid-left">
+        <img src="assets/objects/white-night.png" alt="" class="sticker sticker-bottom-left">
+        <img src="assets/objects/dear-evan-hansen.png" alt="" class="sticker sticker-mid-right">
+        <img src="assets/objects/orpheus-and-eurydice.png" alt="" class="sticker sticker-bottom-right">
+      </div>
+
+      <div class="credits-content">
+        <h2 class="credits-title">CREDITS!</h2>
+        <ul class="credits-list">
+          <li><span class="credit-label">Created by:</span> <span class="credit-value">Alyssa Mae Brucelo | BSIT 4B</span></li>
+          <li><span class="credit-label">Music:</span> <span class="credit-value">Royalty Free Music via Pixabay</span></li>
+          <li><span class="credit-label">Voice:</span> <span class="credit-value">Alyssa Mae Brucelo via Babble Engine</span></li>
+          <li><span class="credit-label">Art:</span> <span class="credit-value">Alyssa Mae Brucelo | BSIT 4B</span></li>
+          <li><span class="credit-label">Background:</span> <span class="credit-value">Alyssa Mae Brucelo | 4B</span></li>
+          <li><span class="credit-label">Script:</span> <span class="credit-value">Alyssa Mae Brucelo | BSIT 4B</span></li>
+          <li><span class="credit-label">SFX:</span> <span class="credit-value">Alyssa Mae Brucelo via Pixabay and Freesound</span></li>
+        </ul>
+        <p class="credits-note">This short project was made for Great Books!</p>
+        <button id="btn-back-title" class="pill-btn credits-back-btn" type="button">Back to Title</button>
+      </div>
+    </section>
+
+    <!-- Transition Overlay (White / Black / Eye-Open) -->
+    <div id="transition-overlay" class="transition-overlay" aria-hidden="true">
+      <div class="eyelid eyelid-top"></div>
+      <div class="eyelid eyelid-bottom"></div>
+    </div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
